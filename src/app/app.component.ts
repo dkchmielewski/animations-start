@@ -3,7 +3,7 @@ import {
   
 } from '@angular/core';
 
-import { animate, keyframes, state, style, transition, trigger } from '@angular/animations';
+import { animate, keyframes, state, style, transition, trigger, group } from '@angular/animations';
 
 @Component({
   selector: 'app-root',
@@ -96,12 +96,16 @@ import { animate, keyframes, state, style, transition, trigger } from '@angular/
         ]))
       ]),
       transition('* => void', [
-        animate(300, style({
-          transform: 'translateX(100px)',
-          opacity: 0
-        }))
-      ]),
-      // transition('highlighted => normal', animate(800))
+        group([
+          animate(300, style({
+            color: 'red'
+          })),
+          animate(800, style({
+            transform: 'translateX(100px)',
+            opacity: 0
+          }))
+        ])
+      ])
     ]),
   ]
 })
